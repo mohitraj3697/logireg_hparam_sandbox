@@ -29,7 +29,7 @@ def draw_meshgrid():
 
 plt.style.use('fivethirtyeight')
 
-st.sidebar.markdown("# Logistic Regression Classifier")
+st.sidebar.markdown("# Logistic Regression hparam")
 
 dataset = st.sidebar.selectbox(
     'Select Dataset',
@@ -57,11 +57,6 @@ solver = st.sidebar.selectbox(
 
 max_iter = int(st.sidebar.number_input('Max Iterations',value=100))
 
-multi_class = st.sidebar.selectbox(
-    'Multi Class',
-    ('auto', 'ovr', 'multinomial')
-)
-
 l1_ratio = float(st.sidebar.number_input('l1 Ratio', min_value=0.0, max_value=1.0, value=0.5, step=0.1))
 
 # load initial graph
@@ -76,7 +71,7 @@ if st.sidebar.button('Run Algorithm'):
     orig.empty()
 
     penalty_value = None if penalty == 'none' else penalty
-    params = dict(penalty=penalty_value, C=c_input, solver=solver, max_iter=max_iter, multi_class=multi_class)
+    params = dict(penalty=penalty_value, C=c_input, solver=solver, max_iter=max_iter)
     if penalty == 'elasticnet':
         params['l1_ratio'] = l1_ratio
 
